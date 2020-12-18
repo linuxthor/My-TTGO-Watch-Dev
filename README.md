@@ -209,3 +209,6 @@ void soundboard_main_tile_setup( uint32_t tile_num ) {
 
 (n.b:- It's important to create objects in the main tile setup attached to the specific application tile - using lv_scr_act() for the active screen works ok elsewhere but will add items to the watches main time display if used here!)
 
+So far a button has been created in the bottom left that exits the application. It's possible to place the button elsewhere as follows: 
+
+![alignment](https://docs.lvgl.io/latest/en/html/_images/align.png)
