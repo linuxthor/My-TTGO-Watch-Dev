@@ -2,11 +2,11 @@
 
 ## Introduction    
 
-This is a brief guide to extending or changing the My-TTGO-Watch project by developing new applications. Firstly a small warning - there is no separation between the OS and applications or between the various applications. Everything runs in one memory space so any small mistake in an application you make (even as simple as a 'use after free' bug or something) can cause the system to crash. 
+This is a brief guide to extending or changing the My-TTGO-Watch project by developing new applications. Firstly a small warning - there is no separation between the watch operating system and running applications or indeed between the various applications. Everything runs in one memory space so any small mistake in an application you make (even as simple as a 'use after free' bug or something) can cause the system to crash!        
 
 ## Can you 'brick' the watch?     
 
-You might wonder if it's safe to experiment with your watch or do you risk 'bricking' it or getting into an unrecoverable situation? The good news is that I made *lots* of mistakes when writing software for the watch including several reboot loops and rendering the watch seemingly non responsive for a time but I was always able to recover by flashing the firmware again from my PC so based on my limited experiments it seems safe to do some experimental stuff!           
+You might wonder if it's safe to experiment with your watch or do you risk 'bricking' it or getting into an unrecoverable situation? The good news is that I made *lots* of mistakes when writing software for the watch including several reboot loops and rendering the watch seemingly non responsive for a while but I was always able to recover by flashing the firmware again from my PC so based on my limited experiments it seems safe to do some experimental stuff!           
 
 ## Requirements
 
@@ -176,4 +176,36 @@ static void enter_soundboard_app_event_cb( lv_obj_t * obj, lv_event_t event ) {
 
 ### Main tile setup
 
-The main tile setup function is the place where we can add some buttons, text labels or other widgets to our app. 
+The main tile setup function is the place where we can add some buttons, text labels or other widgets to our app and get eveything ready.    
+
+```
+void soundboard_main_tile_setup( uint32_t tile_num ) {
+
+    soundboard_main_tile = mainbar_get_tile_obj( tile_num );
+
+    lv_style_copy( &soundboard_main_style, mainbar_get_style() );
+    lv_style_set_bg_color( &soundboard_main_style, LV_OBJ_PART_MAIN, LV_COLOR_BLACK );
+    lv_style_set_bg_opa( &soundboard_main_style, LV_OBJ_PART_MAIN, LV_OPA_100);
+    lv_style_set_border_width( &soundboard_main_style, LV_OBJ_PART_MAIN, 0);
+    lv_style_set_text_font( &soundboard_main_style, LV_STATE_DEFAULT, &Ubuntu_48px);
+    lv_obj_add_style( soundboard_main_tile, LV_OBJ_PART_MAIN, &soundboard_main_style );
+
+    lv_style_copy( &soundboard_id_style, mainbar_get_style() );
+    lv_style_set_bg_color( &soundboard_id_style, LV_OBJ_PART_MAIN, LV_COLOR_BLACK );
+    lv_style_set_bg_opa( &soundboard_id_style, LV_OBJ_PART_MAIN, LV_OPA_100);
+    lv_style_set_border_width( &soundboard_id_style, LV_OBJ_PART_MAIN, 0);
+    lv_style_set_text_font( &soundboard_id_style, LV_STATE_DEFAULT, &Ubuntu_16px);
+
+    lv_obj_t * exit_btn = lv_imgbtn_create( soundboard_main_tile, NULL);
+    lv_imgbtn_set_src(exit_btn, LV_BTN_STATE_RELEASED, &exit_32px);
+    lv_imgbtn_set_src(exit_btn, LV_BTN_STATE_PRESSED, &exit_32px);
+    lv_imgbtn_set_src(exit_btn, LV_BTN_STATE_CHECKED_RELEASED, &exit_32px);
+    lv_imgbtn_set_src(exit_btn, LV_BTN_STATE_CHECKED_PRESSED, &exit_32px);
+    lv_obj_add_style(exit_btn, LV_IMGBTN_PART_MAIN, &soundboard_main_style );
+    lv_obj_align(exit_btn, soundboard_main_tile, LV_ALIGN_IN_BOTTOM_LEFT, 10, -10 );
+    lv_obj_set_event_cb( exit_btn, exit_soundboard_main_event_cb );
+}
+```
+
+(n.b:- It's important to create objects in the main tile setup attached to the specific application tile - using lv_scr_act() for the active screen works ok elsewhere but will add items to the watches main time display if used here!)
+
