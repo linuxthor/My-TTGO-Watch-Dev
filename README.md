@@ -264,7 +264,7 @@ static void enter_soundboard_onebutton_event_cb( lv_obj_t * obj, lv_event_t even
 }
 ```
 
-Now the application can be built. Add the mp3 files to the data directory in the root of the project and run: 
+Now the application can be built. Add the mp3 files to the data directory in the root of the My-TTGO-Watch project and run: 
 
 ```
 pio -t run uploadfs
