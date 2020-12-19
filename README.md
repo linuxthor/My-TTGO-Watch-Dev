@@ -116,7 +116,7 @@ The generated file may need adjusting in the header as follows:
 #endif
 ```
 
-should be changed to: 
+may need to be changed to: 
 
 ```
 #include "lvgl/lvgl.h"
