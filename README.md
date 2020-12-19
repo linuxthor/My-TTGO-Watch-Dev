@@ -106,6 +106,22 @@ Then in the image convertor choose:
 
 and give the image an appropriate name such as soundboard_app_64px and click 'convert' and a file will be generated and saved to your computer with the .c extension.  
 
+The generated file may need adjusting in the header as follows:
+
+```
+#if defined(LV_LVGL_H_INCLUDE_SIMPLE)
+#include "lvgl.h"
+#else
+#include "../lvgl/lvgl.h"
+#endif
+```
+
+should be changed to: 
+
+```
+#include "lvgl/lvgl.h"
+```
+
 ### Registering the app      
 
 Registering the app is simply a matter of including your header file in the main watch project file and calling your setup function. 
