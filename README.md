@@ -2,7 +2,7 @@
 
 ## Introduction    
 
-This is a brief guide to extending or changing the My-TTGO-Watch project by developing new applications. Firstly a small warning - there is no separation between the watch operating system and running applications or indeed between the various applications. Everything runs in one memory space so any small mistake in an application you make (even as simple as a 'use after free' bug or something) can cause the system to crash!        
+This is a brief guide to extending the My-TTGO-Watch project by developing new applications. Firstly a small warning - there is no separation between the watch operating system and running applications or indeed between the various applications. Everything runs in one memory space so any small mistake in an application you make (even as simple as a 'use after free' bug or something) can cause the system to crash!        
 
 ## Can you 'brick' the watch?     
 
