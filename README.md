@@ -232,41 +232,61 @@ So far a button has been created in the bottom left that exits the application. 
 For this example soundboard application we need to add a few more buttons to the main tile: 
 
 ```
-    lv_obj_t * one_btn = lv_imgbtn_create( soundboard_main_tile, NULL);
+
+void soundboard_app_main_setup( uint32_t tile_num ) {
+
+    soundboard_app_main_tile = mainbar_get_tile_obj( tile_num );
+    lv_style_copy( &soundboard_app_main_style, mainbar_get_style() );
+
+    // 0
+    lv_obj_t * zero_btn = lv_imgbtn_create( soundboard_app_main_tile, NULL);
+    lv_imgbtn_set_src(zero_btn, LV_BTN_STATE_RELEASED, &button_64px);
+    lv_imgbtn_set_src(zero_btn, LV_BTN_STATE_PRESSED, &button_64px);
+    lv_imgbtn_set_src(zero_btn, LV_BTN_STATE_CHECKED_RELEASED, &button_64px);
+    lv_imgbtn_set_src(zero_btn, LV_BTN_STATE_CHECKED_PRESSED, &button_64px);
+    lv_obj_add_style(zero_btn, LV_IMGBTN_PART_MAIN, &soundboard_app_main_style );
+    lv_obj_align(zero_btn, soundboard_app_main_tile, LV_ALIGN_IN_TOP_LEFT, 0, 0 );
+    lv_obj_set_event_cb( zero_btn, enter_soundboard_app_zero_event_cb );
+ 
+    // 1
+    lv_obj_t * one_btn = lv_imgbtn_create( soundboard_app_main_tile, NULL);
     lv_imgbtn_set_src(one_btn, LV_BTN_STATE_RELEASED, &button_64px);
     lv_imgbtn_set_src(one_btn, LV_BTN_STATE_PRESSED, &button_64px);
     lv_imgbtn_set_src(one_btn, LV_BTN_STATE_CHECKED_RELEASED, &button_64px);
     lv_imgbtn_set_src(one_btn, LV_BTN_STATE_CHECKED_PRESSED, &button_64px);
-    lv_obj_add_style(one_btn, LV_IMGBTN_PART_MAIN, &soundboard_main_style );
-    lv_obj_align(one_btn, soundboard_main_tile, LV_ALIGN_IN_TOP_LEFT, 10, -10 );
-    lv_obj_set_event_cb( one_btn, enter_soundboard_onebutton_event_cb );
+    lv_obj_add_style(one_btn, LV_IMGBTN_PART_MAIN, &soundboard_app_main_style );
+    lv_obj_align(one_btn, soundboard_app_main_tile, LV_ALIGN_IN_TOP_RIGHT, 0, 0 );
+    lv_obj_set_event_cb( one_btn, enter_soundboard_app_one_event_cb );
 
-    lv_obj_t * two_btn = lv_imgbtn_create( soundboard_main_tile, NULL);
+    // 2
+    lv_obj_t * two_btn = lv_imgbtn_create( soundboard_app_main_tile, NULL);
     lv_imgbtn_set_src(two_btn, LV_BTN_STATE_RELEASED, &button_64px);
     lv_imgbtn_set_src(two_btn, LV_BTN_STATE_PRESSED, &button_64px);
     lv_imgbtn_set_src(two_btn, LV_BTN_STATE_CHECKED_RELEASED, &button_64px);
     lv_imgbtn_set_src(two_btn, LV_BTN_STATE_CHECKED_PRESSED, &button_64px);
-    lv_obj_add_style(two_btn, LV_IMGBTN_PART_MAIN, &soundboard_main_style );
-    lv_obj_align(two_btn, soundboard_main_tile, LV_ALIGN_IN_TOP_RIGHT, 10, -10 );
-    lv_obj_set_event_cb( two_btn, enter_soundboard_twobutton_event_cb );
+    lv_obj_add_style(two_btn, LV_IMGBTN_PART_MAIN, &soundboard_app_main_style );
+    lv_obj_align(two_btn, soundboard_app_main_tile, LV_ALIGN_IN_LEFT_MID, 0, 0 );
+    lv_obj_set_event_cb( two_btn, enter_soundboard_app_two_event_cb );
 
-    lv_obj_t * three_btn = lv_imgbtn_create( soundboard_main_tile, NULL);
+    // 3 
+    lv_obj_t * three_btn = lv_imgbtn_create( soundboard_app_main_tile, NULL);
     lv_imgbtn_set_src(three_btn, LV_BTN_STATE_RELEASED, &button_64px);
     lv_imgbtn_set_src(three_btn, LV_BTN_STATE_PRESSED, &button_64px);
     lv_imgbtn_set_src(three_btn, LV_BTN_STATE_CHECKED_RELEASED, &button_64px);
     lv_imgbtn_set_src(three_btn, LV_BTN_STATE_CHECKED_PRESSED, &button_64px);
-    lv_obj_add_style(three_btn, LV_IMGBTN_PART_MAIN, &soundboard_main_style );
-    lv_obj_align(three_btn, soundboard_main_tile, LV_ALIGN_IN_LEFT_MID, 10, -10 );
-    lv_obj_set_event_cb( three_btn, enter_soundboard_threebutton_event_cb );
+    lv_obj_add_style(three_btn, LV_IMGBTN_PART_MAIN, &soundboard_app_main_style );
+    lv_obj_align(three_btn, soundboard_app_main_tile, LV_ALIGN_IN_RIGHT_MID, 0, 0 );
+    lv_obj_set_event_cb( three_btn, enter_soundboard_app_three_event_cb );
 
-    lv_obj_t * four_btn = lv_imgbtn_create( soundboard_main_tile, NULL);
-    lv_imgbtn_set_src(four_btn, LV_BTN_STATE_RELEASED, &exit_32px);
-    lv_imgbtn_set_src(four_btn, LV_BTN_STATE_PRESSED, &exit_32px);
-    lv_imgbtn_set_src(four_btn, LV_BTN_STATE_CHECKED_RELEASED, &exit_32px);
-    lv_imgbtn_set_src(four_btn, LV_BTN_STATE_CHECKED_PRESSED, &exit_32px);
-    lv_obj_add_style(four_btn, LV_IMGBTN_PART_MAIN, &soundboard_main_style );
-    lv_obj_align(four_btn, soundboard_main_tile, LV_ALIGN_IN_RIGHT_MID, 10, -10 );
-    lv_obj_set_event_cb( four_btn, enter_soundboard_main_event_cb );
+    lv_obj_t * exit_btn = lv_imgbtn_create( soundboard_app_main_tile, NULL);
+    lv_imgbtn_set_src(exit_btn, LV_BTN_STATE_RELEASED, &exit_32px);
+    lv_imgbtn_set_src(exit_btn, LV_BTN_STATE_PRESSED, &exit_32px);
+    lv_imgbtn_set_src(exit_btn, LV_BTN_STATE_CHECKED_RELEASED, &exit_32px);
+    lv_imgbtn_set_src(exit_btn, LV_BTN_STATE_CHECKED_PRESSED, &exit_32px);
+    lv_obj_add_style(exit_btn, LV_IMGBTN_PART_MAIN, &soundboard_app_main_style );
+    lv_obj_align(exit_btn, soundboard_app_main_tile, LV_ALIGN_IN_BOTTOM_RIGHT, -10, -10 );
+    lv_obj_set_event_cb( exit_btn, exit_soundboard_app_main_event_cb );
+}
 ```
 
 The next step is to add actions to the callbacks when the buttons are pressed to play mp3 files from SPIFFS. For example: 
