@@ -192,7 +192,7 @@ static void enter_soundboard_app_event_cb( lv_obj_t * obj, lv_event_t event ) {
 
 ### Main tile setup
 
-The main tile setup function is the place where we can add some buttons, text labels or other widgets to our app and get eveything ready.    
+The main tile setup function is the place where we can add some buttons, text labels or other LVGL widgets (per the docs at https://docs.lvgl.io/v7/en/html/widgets/index.html where examples are provided for each type)     
 
 ```
 void soundboard_app_main_setup( uint32_t tile_num ) {
