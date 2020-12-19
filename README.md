@@ -310,3 +310,13 @@ pio -t run upload
 At this point the app can be launched and the interface should look like this: 
 
 ![sboard](sboard.png)
+
+# Debugging
+
+To debug any issues with your application use the serial terminal. For example on Linux I connect to the watch with: 
+
+```
+ minicom --device /dev/ttyUSB0
+```
+
+and here debugging messages can be viewed both from your application and also the 'guru meditation' errors produced when the OS crashes. 
