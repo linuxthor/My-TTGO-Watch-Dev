@@ -195,31 +195,19 @@ static void enter_soundboard_app_event_cb( lv_obj_t * obj, lv_event_t event ) {
 The main tile setup function is the place where we can add some buttons, text labels or other widgets to our app and get eveything ready.    
 
 ```
-void soundboard_main_tile_setup( uint32_t tile_num ) {
+void soundboard_app_main_setup( uint32_t tile_num ) {
 
-    soundboard_main_tile = mainbar_get_tile_obj( tile_num );
+    soundboard_app_main_tile = mainbar_get_tile_obj( tile_num );
+    lv_style_copy( &soundboard_app_main_style, mainbar_get_style() );
 
-    lv_style_copy( &soundboard_main_style, mainbar_get_style() );
-    lv_style_set_bg_color( &soundboard_main_style, LV_OBJ_PART_MAIN, LV_COLOR_BLACK );
-    lv_style_set_bg_opa( &soundboard_main_style, LV_OBJ_PART_MAIN, LV_OPA_100);
-    lv_style_set_border_width( &soundboard_main_style, LV_OBJ_PART_MAIN, 0);
-    lv_style_set_text_font( &soundboard_main_style, LV_STATE_DEFAULT, &Ubuntu_48px);
-    lv_obj_add_style( soundboard_main_tile, LV_OBJ_PART_MAIN, &soundboard_main_style );
-
-    lv_style_copy( &soundboard_id_style, mainbar_get_style() );
-    lv_style_set_bg_color( &soundboard_id_style, LV_OBJ_PART_MAIN, LV_COLOR_BLACK );
-    lv_style_set_bg_opa( &soundboard_id_style, LV_OBJ_PART_MAIN, LV_OPA_100);
-    lv_style_set_border_width( &soundboard_id_style, LV_OBJ_PART_MAIN, 0);
-    lv_style_set_text_font( &soundboard_id_style, LV_STATE_DEFAULT, &Ubuntu_16px);
-
-    lv_obj_t * exit_btn = lv_imgbtn_create( soundboard_main_tile, NULL);
+    lv_obj_t * exit_btn = lv_imgbtn_create( soundboard_app_main_tile, NULL);
     lv_imgbtn_set_src(exit_btn, LV_BTN_STATE_RELEASED, &exit_32px);
     lv_imgbtn_set_src(exit_btn, LV_BTN_STATE_PRESSED, &exit_32px);
     lv_imgbtn_set_src(exit_btn, LV_BTN_STATE_CHECKED_RELEASED, &exit_32px);
     lv_imgbtn_set_src(exit_btn, LV_BTN_STATE_CHECKED_PRESSED, &exit_32px);
-    lv_obj_add_style(exit_btn, LV_IMGBTN_PART_MAIN, &soundboard_main_style );
-    lv_obj_align(exit_btn, soundboard_main_tile, LV_ALIGN_IN_BOTTOM_LEFT, 10, -10 );
-    lv_obj_set_event_cb( exit_btn, exit_soundboard_main_event_cb );
+    lv_obj_add_style(exit_btn, LV_IMGBTN_PART_MAIN, &soundboard_app_main_style );
+    lv_obj_align(exit_btn, soundboard_app_main_tile, LV_ALIGN_IN_BOTTOM_RIGHT, -10, -10 );
+    lv_obj_set_event_cb( exit_btn, exit_soundboard_app_main_event_cb );
 }
 ```
 
@@ -232,7 +220,6 @@ So far a button has been created in the bottom left that exits the application. 
 For this example soundboard application we need to add a few more buttons to the main tile: 
 
 ```
-
 void soundboard_app_main_setup( uint32_t tile_num ) {
 
     soundboard_app_main_tile = mainbar_get_tile_obj( tile_num );
@@ -292,7 +279,7 @@ void soundboard_app_main_setup( uint32_t tile_num ) {
 The next step is to add actions to the callbacks when the buttons are pressed to play mp3 files from SPIFFS. For example: 
 
 ```
-static void enter_soundboard_onebutton_event_cb( lv_obj_t * obj, lv_event_t event ) {
+static void enter_soundboard_app_three_event_cb( lv_obj_t * obj, lv_event_t event ) {
     switch( event ) {
         case( LV_EVENT_CLICKED ):      sound_play_spiffs_mp3( "/sound1.mp3" );
                                        break;
@@ -306,7 +293,7 @@ MP3 files should be generated with parameters like:
 *  16 kHz 
 *  Monaural
 
-I downloaded some sound effects in WAV format from the BBC archive at https://sound-effects.bbcrewind.co.uk and converted them. The most important thing seems to be keeping the paramaters set low (as if the MP3 is too high quality the watch may lock up.)
+I downloaded some sound effects in WAV format from the BBC archive at https://sound-effects.bbcrewind.co.uk and converted them. The most important thing seems to be keeping the paramaters set low (as if the MP3 is too high quality the watch may lock up or become upset)
 
 Now the application can be built. Add the mp3 files to the data directory in the root of the My-TTGO-Watch project and run: 
 
