@@ -313,7 +313,7 @@ At this point the app can be launched and the interface should look like this:
 
 # Debugging
 
-To debug any issues with your application use the serial terminal. For example on Linux I connect to the watch with: 
+To debug any issues with your application use the serial terminal. For example on Linux I connect to the watch (attached to the computer via USB cable) with: 
 
 ```
  minicom --device /dev/ttyUSB0
