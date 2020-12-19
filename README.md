@@ -280,10 +280,24 @@ static void enter_soundboard_onebutton_event_cb( lv_obj_t * obj, lv_event_t even
 }
 ```
 
+MP3 files should be generated with parameters like: 
+
+*  32 kbps 
+*  16 kHz 
+*  Monaural
+
+I downloaded some sound effects in WAV format from the BBC archive at https://sound-effects.bbcrewind.co.uk and converted them. The most important thing seems to be keeping the paramaters set low (as if the MP3 is too high quality the watch may lock up.)
+
 Now the application can be built. Add the mp3 files to the data directory in the root of the My-TTGO-Watch project and run: 
 
 ```
 pio -t run uploadfs
+```
+
+Then build the project: 
+
+```
+pio -t run upload
 ```
 
 At this point the app can be launched and the interface should look like this: 
