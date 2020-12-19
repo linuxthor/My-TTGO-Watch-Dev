@@ -75,7 +75,7 @@ For example if we would like to create a simple 'soundboard' application to play
       '-- weather
 ```
 
-Next we can add the source files using either example_app in the main My-TTGO-Watch repo or the stripped down skeleton_app in this repo as a guide. The minimum an app will have is usually: 
+Next we can add the source files using either example_app in the main My-TTGO-Watch repo or the stripped down skeleton_app in this repo as a guide. A minimal app will have something like: 
 
 ```
 soundboard_app.cpp                                      // responsible for setup of the app and registration of it's icon etc  
