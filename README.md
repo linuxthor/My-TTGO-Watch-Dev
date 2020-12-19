@@ -46,10 +46,10 @@ src
 
 ## Components
 
-The project is built on a number of different technologies but two key ones are: 
+The project is built from a number of different components but two key ones are: 
 
 * LVGL (https://lvgl.io/) - Graphics library. Important to know for apps. Well documented on their website.              
-* FreeRTOS (https://www.freertos.org/) - Operating system. Might not need to know much about it unless doing weird/advanced stuff.     
+* FreeRTOS (https://www.freertos.org/) - Operating system. (Might not need to know much about it unless doing weird/advanced stuff)     
 
 ## App development
 
