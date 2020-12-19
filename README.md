@@ -309,7 +309,4 @@ pio -t run upload
 
 At this point the app can be launched and the interface should look like this: 
 
-```
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX SCREENSHOT XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-```
-
+![sboard](sboard.png)
