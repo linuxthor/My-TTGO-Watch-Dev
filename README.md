@@ -283,7 +283,7 @@ The next step is to add actions to the callbacks when the buttons are pressed to
 ```
 static void enter_soundboard_app_three_event_cb( lv_obj_t * obj, lv_event_t event ) {
     switch( event ) {
-        case( LV_EVENT_CLICKED ):      sound_play_spiffs_mp3( "/sound1.mp3" );
+        case( LV_EVENT_CLICKED ):      sound_play_spiffs_mp3( "/sound3.mp3" );
                                        break;
     }
 }
