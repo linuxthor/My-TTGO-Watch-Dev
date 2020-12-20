@@ -6,7 +6,7 @@ This is a brief guide to extending the My-TTGO-Watch project by developing new a
 
 ## Can you 'brick' the watch?     
 
-You might wonder if it's safe to experiment with your watch or do you risk 'bricking' it or getting into an unrecoverable situation? The good news is that I made *lots* of mistakes when writing software for the watch including several reboot loops and rendering the watch seemingly non responsive for a while but I was always able to recover by flashing the firmware again from my PC so based on my limited experiments it seems safe to do some experimental stuff!           
+You might wonder if it's safe to experiment with your watch or do you risk 'bricking' it or getting into an unrecoverable situation? The good news is that I made *lots* of mistakes when writing software for the watch including several reboot loops and rendering the watch seemingly non responsive for a while but I was always able to recover by flashing the firmware again from my PC so based on my limited experience it seems safe to do some experimental stuff!           
 
 ## Requirements
 
@@ -93,7 +93,7 @@ Rather than do everything 'from scratch' you can copy example_app or skeleton_ap
 
 The LVGL project provide an image convertor at https://lvgl.io/tools/imageconverter which can be used to convert images into the appropriate C array format for LVGL. 
 
-Start by creating an image in the following format:
+Start by creating a source image in the following format:
 
 * 64px x 64px 
 * PNG format
@@ -122,9 +122,11 @@ may need to be changed to:
 #include "lvgl/lvgl.h"
 ```
 
+The generated file should go in the images directory within your app. 
+
 ### Registering the app      
 
-Registering the app is simply a matter of including your header file in the main watch project file and calling your setup function. 
+'Registering' the app is simply a matter of including your header file in the main watch project file and calling your setup function. 
 
 In my-ttgo-watch.ino you need to add your header:
 
@@ -287,13 +289,13 @@ static void enter_soundboard_app_three_event_cb( lv_obj_t * obj, lv_event_t even
 }
 ```
 
-MP3 files should be generated with parameters like: 
+MP3 files should be generated with modest parameters like e.g: 
 
 *  32 kbps 
 *  16 kHz 
 *  Monaural
 
-I downloaded some sound effects in WAV format from the BBC archive at https://sound-effects.bbcrewind.co.uk and converted them. The most important thing seems to be keeping the paramaters set low (as if the MP3 is too high quality the watch may crash during playback)
+I downloaded some sound effects in WAV format from the BBC archive at https://sound-effects.bbcrewind.co.uk and simply converted them. The most important thing seems to be keeping the paramaters set low (as if the MP3 is too high quality the watch may crash during playback)
 
 Now the application can be built. Add the mp3 files to the data directory in the root of the My-TTGO-Watch project and run: 
 
